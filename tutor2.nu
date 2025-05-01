@@ -16,15 +16,24 @@ export def main [] {
 r#'
 Welcome to the Nushell tutorial!
 
-With the `tutor` command, you'll be able to learn a lot about how Nushell
+With the `tutor2` command, you'll be able to learn a lot about how Nushell
 works along with many fun tips and tricks to speed up everyday tasks.
 
-To get started, you can use `tutor begin`, and to see all the available
-tutorials just run `tutor list`.
+To get started, you can use `tutor2 begin`, and to see all the available
+tutorials just run `tutor2 list`.
 
 '#
 | nu-light
 }
+
+export def "tutor2 list" [] {
+r#'
+to be implemented - list all commands
+
+'#
+| nu-light
+}
+
 
 export def "tutor2 begin" [] {
 r#'
@@ -48,17 +57,17 @@ the name column.
 
 You can continue to learn more about tables by running:
 ```
-tutor tables
+tutor2 tables
 ```
 If at any point, you'd like to restart this tutorial, you can run:
 ```
-tutor begin
+tutor2 begin
 ```
 '#
 | nu-light
 }
 
-export def "tutor2 table" [] {
+export def "tutor2 tables" [] {
 r#'
 The most common form of data in Nushell is the table. Tables contain rows and
 columns of data. In each cell of the table, there is data that you can access
@@ -91,13 +100,13 @@ work with.
 You can continue to learn more about working with cells of the table by
 running:
 ```
-tutor cells
+tutor2 cells
 ```
 '#
 | nu-light
 }
 
-export def "tutor2 cell" [] {
+export def "tutor2 cells" [] {
 r#'
 Working with cells of data in the table is a key part of working with data in
 Nushell. Because of this, there is a rich list of commands to work with cells
@@ -120,17 +129,17 @@ Names/strings represent columns names and numbers represent row numbers.
 The `(ls)` is a form of expression. You can continue to learn more about
 expressions by running:
 ```
-tutor expressions
+tutor2 expressions
 ```
 You can also learn about these cell shorthands by running:
 ```
-tutor shorthands
+tutor2 shorthands
 ```
 '#
 | nu-light
 }
 
-export def "tutor2 expression" [] {
+export def "tutor2 expressions" [] {
 r#'
 Expressions give you the power to mix calls to commands with math. The
 simplest expression is a single value like a string or number.
@@ -154,7 +163,7 @@ echo (2 + 3)
 ```
 You can continue to learn more about the `echo` command by running:
 ```
-tutor echo
+tutor2 echo
 ```
 '#
 | nu-light
@@ -185,7 +194,7 @@ code on each row, or item, of input.
 
 You can continue to learn more about the `each` command by running:
 ```
-tutor each
+tutor2 each
 ```
 '#
 | nu-light
@@ -205,17 +214,17 @@ is the name given to the block's parameter by default.
 
 You can learn more about blocks by running:
 ```
-tutor blocks
+tutor2 blocks
 ```
 You can also learn more about variables by running:
 ```
-tutor variables
+tutor2 variables
 ```
 '#
 | nu-light
 }
 
-export def "tutor2 variable" [] {
+export def "tutor2 variables" [] {
 r#'
 Variables are an important way to store values to be used later. To create a
 variable, you can use the `let` keyword. The `let` command will create a
@@ -237,7 +246,7 @@ with all of the data coming in from the pipeline in one place.
 | nu-light
 }
 
-export def "tutor2 block" [] {
+export def "tutor2 blocks" [] {
 r#'
 Blocks are a special form of expression that hold code to be run at a later
 time. Often, you'll see blocks as one of the arguments given to commands
@@ -252,38 +261,11 @@ if true { echo "it's true" } else { echo "it's not true" }
 This `if` call will run the first block if the expression is true, or the
 second block if the expression is false.
 
-"#
-}
-
-fn shorthand_tutor() -> &'static str {
-    r#"
-You can access data in a structure via a shorthand notation called a "cell path",
-sometimes called a "column path". These paths allow you to go from a structure to
-rows, columns, or cells inside of the structure.
-
-Shorthand paths are made from rows numbers, column names, or both. You can use
-them on any variable or subexpression.
-```
-$env.PWD
-```
-The above accesses the built-in `$env` variable, gets its table, and then uses
-the shorthand path to retrieve only the cell data inside the "PWD" column.
-```
-(ls).name.4
-```
-This will retrieve the cell data in the "name" column on the 5th row (note:
-row numbers are zero-based).
-
-For tables, rows and columns don't need to come in any specific order. You can
-produce the same value using:
-```
-(ls).4.name
-```
 '#
 | nu-light
 }
 
-export def "tutor2 shorthand" [] {
+export def "tutor2 shorthands" [] {
 r#'
 You can access data in a structure via a shorthand notation called a "cell path",
 sometimes called a "column path". These paths allow you to go from a structure to
