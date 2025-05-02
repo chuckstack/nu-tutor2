@@ -8,28 +8,34 @@ def injest [] {
     | split row -r '(?m)(?<=^)(?=#)' 
     | enumerate 
     | where (($it.item | str length) > 0)
-    | insert indent 0 
-    | insert command "" 
+    | insert indent { |row|
+        ($row.item | split row ' ' | first | str length) - 1
+    }
+    | insert command { |row|
+        $row.item |  str replace -r '^#+\s' '' | split words | first
+    } 
+    | insert body { |row|
+        $row.item | lines | skip 1 | str join "\n"
+    }
     | insert command-prefix []
-    | insert body ""
 
-    # find command depth (number of #'s)
-    $table_source = $table_source
-    | each { |row|
-        $row | update indent (($row.item | split row ' ' | first | str length) - 1)
-    }
+    ## find command depth (number of #'s)
+    #$table_source = $table_source
+    #| each { |row|
+    #    $row | update indent (($row.item | split row ' ' | first | str length) - 1)
+    #}
 
-    # set command
-    $table_source = $table_source
-    | each { |row|
-        $row | update command ($row.item |  str replace -r '^#+\s' '' | split words | first)
-    }
+    ## set command
+    #$table_source = $table_source
+    #| each { |row|
+    #    $row | update command ($row.item |  str replace -r '^#+\s' '' | split words | first)
+    #}
 
-    # set body
-    $table_source = $table_source
-    | each { |row|
-        $row | update body ($row.item | lines | skip 1 | str join "\n" )
-    }
+    ## set body
+    #$table_source = $table_source
+    #| each { |row|
+    #    $row | update body ($row.item | lines | skip 1 | str join "\n" )
+    #}
 
     # set subcommand
     # re-index table (enumerate) to account for previously removed rows
@@ -57,7 +63,7 @@ def injest [] {
     #    $row
     #}
 
-    for row in ($table_source | enumerate | flatten) {
+    for row in $table_source {
         let new_row = if $row.indent > $previous_indent {
             #need to check to see if jump is > 1; then error
             $previous_command_list = ($previous_command_list | append $previous_command)
