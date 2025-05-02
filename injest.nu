@@ -19,6 +19,8 @@ def injest [] {
     }
     | insert command-prefix []
 
+    #todo: scripts needs a parameter to know how to rename main (example: rename main to tutor2)
+
     # set subcommand (command prefix)
     mut result = []
     mut previous_command = ""
