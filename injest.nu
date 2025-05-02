@@ -20,7 +20,6 @@ def injest [] {
     | insert command-prefix []
 
     # set subcommand (command prefix)
-    # re-index table (enumerate) to account for previously removed rows
     mut result = []
     mut previous_command = ""
     mut previous_command_list = []
