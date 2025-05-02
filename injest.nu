@@ -53,25 +53,12 @@ def injest [] {
             | each { if $in.index mod 2 == 1 { $in.item | nu-highlight } else { $in.item } }
             | str join
         } '#
-    # let samplefn = r##' 
-    #export def "tutor4 list" [] {
-    #r#'
-    #to be implemented - list all commands
-    #
-    #'#
-    #| nu-light
-    #}
-    #'##
-    #    echo $"($nu_light)($samplefn)"
 
-    #$result | get command | str join " "
     let nu_command = $result 
     | each { 
-        |row| $"export def \"($row.command-prefix | str join ' ')($row.command-prefix | length | if $in > 0 { ' ' } else { '' })($row.command)\" [] {r#' ($row.body)'#}\n" #todo: need conditional space before $row.command
-        #|row| $"export def \"($row.command-prefix | str join ' ')($row.command-prefix | length | if $in > 0 { ' ' } else { '' })($row.command)\" [] {r#' ($row.body)'#}\n"
+        |row| $"export def \"($row.command-prefix | str join ' ')($row.command-prefix | length | if $in > 0 { ' ' } else { '' })($row.command)\" [] {r#' ($row.body)'#\n | nu-light \n}\n"
     } 
     | str join " "
 
     $"($nu_light) \n ($nu_command)"
-
 }
