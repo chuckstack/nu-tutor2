@@ -12,7 +12,7 @@ def nu-light [] {
     | str join
 }
 
-export def main [] {
+export def "main" [] {
 r#'
 Welcome to the Nushell tutorial!
 
