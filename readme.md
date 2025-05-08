@@ -1,4 +1,4 @@
-# Nushell Summary Tutor Generator
+# Nushell Tutor Generator
 
 The purpose of this repository is to help users create interactive Nushell tutors.
 
