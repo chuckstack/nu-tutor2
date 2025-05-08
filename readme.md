@@ -28,6 +28,22 @@ You can now:
 
 Note that each tutor command can represent anything: a concept, a convention, a process, an actual command.
 
+Also note that the hierarchy of commands:
+
+```txt
+~> tutor2 list
+  - tutor2
+    - begin
+    - tables
+    - cells
+    - expressions
+    - echo
+    - each
+    - variables
+    - blocks
+    - shorthands
+```
+
 ## Markdown Source
 
 Here are the guidelines for creating your markdown tutor file:

@@ -7,6 +7,9 @@ def injest [] {
     #cannot repeat command at the same level
     #cannot jump more than 1 heading level when creating subcommands (ok to skip going back)
 
+    let list_indent_char = "  "
+    let list_indent_id = "- "
+
     mut table_source = $in 
     | split row -r '(?m)(?<=^)(?=#)' 
     | enumerate 
@@ -19,6 +22,9 @@ def injest [] {
     } 
     | insert body { |row|
         $row.item | lines | skip 1 | str join "\n"
+    }
+    | insert list { |row|
+        (0..$row.indent | each {$list_indent_char} | str join) | append $list_indent_id | append $row.command | str join
     }
     | insert command-prefix []
 
@@ -64,8 +70,8 @@ def injest [] {
 
     # define list command
     #TODO: need to indent subcommands by 'indent' column value multiplied by some value (x2 spaces per indent)
-    let list_command = $result | get command | str join "\n- "
-    let list_command_def = $"export def \"($title_command) list\" [] {r#'- ($list_command) '#\n | nu-light \n}\n"
+    let list_command = $result | get list | str join "\n"
+    let list_command_def = $"export def \"($title_command) list\" [] {r#'($list_command)'#\n | nu-light \n}\n"
 
     $"($nu_light) \n ($nu_command) \n ($list_command_def)"
 }
