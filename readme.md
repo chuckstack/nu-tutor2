@@ -12,7 +12,7 @@ Command line help references (example: `ls --help`) are great to see the details
 
 ## Example
 
-We included a sample `tutor2.md` markdown file to make the process easy to understand and test.
+We include a sample `tutor2.md` markdown file to make the process easy to understand and test.
 
 ```nu
 source injest.nu
@@ -79,5 +79,15 @@ Here is an example:
 ### countries
 ### continents
 ##### bad #not allowed to jump from h3 to h5+
+```
+
+## Sample Alternative
+
+We include a sample `sample-alt.md` markdown file that includes more heading/indentation examples:
+
+```nu
+source injest.nu
+open sample-alt.md | injest | save -f sample.nu
+source sample.nu
 ```
 
