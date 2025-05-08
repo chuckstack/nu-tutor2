@@ -1,4 +1,4 @@
-# main
+# tutor2
 
 Welcome to the Nushell tutorial!
 
@@ -7,10 +7,6 @@ works along with many fun tips and tricks to speed up everyday tasks.
 
 To get started, you can use `tutor2 begin`, and to see all the available
 tutorials just run `tutor2 list`.
-
-## list
-
-to be implemented - list all commands
 
 ## begin
 

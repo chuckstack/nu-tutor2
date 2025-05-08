@@ -2,8 +2,13 @@
 # source injest.nu
 # open sample.md | injest
 
-def injest [] {
+def injest [home] {
     # split markdown into headings and create info columns
+
+    #TODO: validations and error checking
+    #home is mandatory - confirm not null
+    #cannot repeat command at the same level
+
     mut table_source = $in 
     | split row -r '(?m)(?<=^)(?=#)' 
     | enumerate 
@@ -18,8 +23,6 @@ def injest [] {
         $row.item | lines | skip 1 | str join "\n"
     }
     | insert command-prefix []
-
-    #todo: scripts needs a parameter to know how to rename main (example: rename main to tutor2)
 
     # set subcommand (command prefix)
     mut result = []
@@ -44,7 +47,9 @@ def injest [] {
         $result = ($result | append $new_row)
     }
 
-    #$result
+    #consider for later: scripts needs a parameter to know how to rename main (example: rename main to tutor2)
+    $table_source | update command {|row| if $row.command == $home { "main" } else { $row.command }}
+
 
     let nu_light = r#'
         def nu-light [] {
@@ -61,5 +66,9 @@ def injest [] {
     } 
     | str join " "
 
-    $"($nu_light) \n ($nu_command)"
+    # define list command
+    let list_command = $result | get command | str join "\n- "
+    let list_command_def = $"export def \"($home) list\" [] {r#'- ($list_command) '#\n | nu-light \n}\n"
+
+    $"($nu_light) \n ($nu_command) \n ($list_command_def)"
 }
