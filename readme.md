@@ -17,6 +17,9 @@ We include a sample `tutor2.md` markdown file to make the process easy to unders
 ```nu
 source injest.nu
 open tutor2.md | injest | save -f tutor2.nu
+```
+
+```nu
 source tutor2.nu
 ```
 
