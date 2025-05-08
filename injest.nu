@@ -1,13 +1,11 @@
-#example usage:
-# source injest.nu
-# open sample.md | injest
+# See readme.md for details
 
-def injest [home] {
+def injest [] {
     # split markdown into headings and create info columns
 
     #TODO: validations and error checking
-    #home is mandatory - confirm not null
     #cannot repeat command at the same level
+    #cannot jump more than 1 heading level when creating subcommands (ok to skip going back)
 
     mut table_source = $in 
     | split row -r '(?m)(?<=^)(?=#)' 
@@ -47,9 +45,7 @@ def injest [home] {
         $result = ($result | append $new_row)
     }
 
-    #consider for later: scripts needs a parameter to know how to rename main (example: rename main to tutor2)
-    $table_source | update command {|row| if $row.command == $home { "main" } else { $row.command }}
-
+    let title_command = $result | first | get command
 
     let nu_light = r#'
         def nu-light [] {
@@ -67,8 +63,9 @@ def injest [home] {
     | str join " "
 
     # define list command
+    #TODO: need to indent subcommands by 'indent' column value multiplied by some value (x2 spaces per indent)
     let list_command = $result | get command | str join "\n- "
-    let list_command_def = $"export def \"($home) list\" [] {r#'- ($list_command) '#\n | nu-light \n}\n"
+    let list_command_def = $"export def \"($title_command) list\" [] {r#'- ($list_command) '#\n | nu-light \n}\n"
 
     $"($nu_light) \n ($nu_command) \n ($list_command_def)"
 }
