@@ -1,14 +1,14 @@
 # Nushell Tutor Generator
 
-The purpose of this repository is to help users create interactive Nushell tutors.
+The purpose of this repository is to help users create interactive Nushell tutors. It converts a markdown file into an interactive Nushell script.
 
-It converts a markdown file into an interactive Nushell script.
+What is special about this concept is that a single markdown file can published to both a website (using github or `mdbook`) and a Nushell environment without repeating yourself.
 
 ## Why Use a Tutor
 
-Tutors help guide users in how to think in a given domain. This example shows how to think in the `nu` or Nushell domain.
+Tutors help guide users in how to think in a given domain. The `tutor2` example included in this repository shows how to think in the `nu` or Nushell domain.
 
-Command line help references (example: `ls --help`) are great to see the details of any command; however, they sometimes lack the ability to create or convey the bigger picture.
+Command line help references (example: `ls --help`) are great to see the details of any command; however, they sometimes lack the ability to create or convey the bigger picture. Iterative tutors complement and support command help nicely.
 
 ## Example
 
@@ -26,7 +26,7 @@ You can now:
 - Type `tutor2 list` to see all tutor2 commands.
 - Type `tutor2 <tab>` to interactively explore the tutor2 commands.
 
-Note that each command can represent anything: concept, convention, process, an actual command.
+Note that each tutor command can represent anything: a concept, a convention, a process, an actual command.
 
 ## Markdown Source
 
