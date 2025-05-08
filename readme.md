@@ -28,7 +28,7 @@ You can now:
 
 Note that each tutor command can represent anything: a concept, a convention, a process, an actual command.
 
-Also note that the hierarchy of commands:
+Also note the hierarchy of commands in `tutor2 list`. This hierarchy allows you to represent more complex concepts while still presenting bite-sized chunks of information.
 
 ```txt
 ~> tutor2 list
