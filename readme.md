@@ -26,6 +26,8 @@ You can now:
 - Type `tutor2 list` to see all tutor2 commands.
 - Type `tutor2 <tab>` to interactively explore the tutor2 commands.
 
+Note that each command can represent anything: concept, convention, process, an actual command.
+
 ## Markdown Source
 
 Here are the guidelines for creating your markdown tutor file:
