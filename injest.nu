@@ -51,8 +51,6 @@ def injest [] {
         $result = ($result | append $new_row)
     }
 
-    let title_command = $result | first | get command
-
     let nu_light = r#'
         def nu-light [] {
             $in
@@ -69,6 +67,7 @@ def injest [] {
     | str join " "
 
     # define list command
+    let title_command = $result | first | get command
     let list_command = $result | get list | str join "\n"
     let list_command_def = $"export def \"($title_command) list\" [] {r#'($list_command)'#\n | nu-light \n}\n"
 
