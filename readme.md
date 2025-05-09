@@ -84,6 +84,10 @@ Here is an example:
 ##### bad #not allowed to jump from h3 to h5+
 ```
 
+### Documentation Links
+
+Most terminals support clicking on hyperlinks. This means markdown html links also work from the terminal. This helps bring your web-based documentation to life.
+
 ## Sample Alternative
 
 We include a sample `sample-alt.md` markdown file that includes more heading/indentation examples:
