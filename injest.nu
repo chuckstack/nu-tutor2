@@ -69,7 +69,6 @@ def injest [] {
     | str join " "
 
     # define list command
-    #TODO: need to indent subcommands by 'indent' column value multiplied by some value (x2 spaces per indent)
     let list_command = $result | get list | str join "\n"
     let list_command_def = $"export def \"($title_command) list\" [] {r#'($list_command)'#\n | nu-light \n}\n"
 
